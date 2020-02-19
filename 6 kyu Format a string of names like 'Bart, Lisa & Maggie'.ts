@@ -4,11 +4,11 @@ var l = [
   { name: "Bart" },
   { name: "Lisa" },
   { name: "Maggie" },
-  { name: "Anibal" },
-  { name: "Ramon" },
-  { name: "Alfredo" },
-  { name: "Mariano" },
-  { name: "Enrique" }
+  { name: "Federico" },
+  { name: "Jazmin" },
+  { name: "Gonzalo" },
+  { name: "Camila" },
+  { name: "Martin" }
 ];
 
 //! ATENCION de esta manera pude hacer que no me de error al pasar el objeto a la funcion toList
@@ -28,30 +28,22 @@ function toList2(names: listaDeObjetos[]): string[] {
   return names.map(n => n["name"]);
 }
 
-function recursiveConcatenation(listaNombres: string[]): string {
+// Quise probar de hacerlo recursivamente, pero se ve horrible.
+// se puede resolver usando "reduce"
+function concat(nombres: string[]): string {
   let text = "";
-  if (listaNombres.length === 0) {
+  if (nombres.length === 0) {
     return text;
-  } else if (listaNombres.length === 1) {
-    return listaNombres.shift() + recursiveConcatenation(listaNombres);
-  } else if (listaNombres.length === 2) {
-    return `${listaNombres.shift()} & ` + recursiveConcatenation(listaNombres);
-  } else if (listaNombres.length >= 3) {
-    return `${listaNombres.shift()}, ` + recursiveConcatenation(listaNombres);
+  } else if (nombres.length === 1) {
+    return nombres.shift() + concat(nombres);
+  } else if (nombres.length === 2) {
+    return `${nombres.shift()} & ` + concat(nombres);
+  } else if (nombres.length >= 3) {
+    return `${nombres.shift()}, ` + concat(nombres);
   }
   return text; // tuve que agregar esto porque sino se quejaba que no tenia undefined o algo asi
 }
 
 function list(names: listaDeObjetos[]): string {
-  return recursiveConcatenation(toList2(names));
-}
-
-let lista = list(l);
-
-try {
-  //el "!" se pone para asegurarle a TS que no va a ser null
-  let resultado = document.getElementById("resultado")!;
-  resultado.textContent = `Resultado: ${lista}`;
-} catch (error) {
-  console.log(lista);
+  return concat(toList2(names));
 }
