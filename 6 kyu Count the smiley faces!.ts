@@ -1,5 +1,6 @@
 // https://www.codewars.com/kata/583203e6eb35d7980400002a/javascript
 
-// https://www.codewars.com/kata/583203e6eb35d7980400002a/train/javascript
-
-// https://www.typescriptlang.org/play/index.html
+function countSmileys(arr:string[]):number {
+    const re = /(:|;)(-|~)?(\)|D)/
+    return arr.filter(str => { return re.test(str) }).length
+}
