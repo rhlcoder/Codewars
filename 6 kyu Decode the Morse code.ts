@@ -1,6 +1,5 @@
 // https://www.codewars.com/kata/54b724efac3d5402db00065e/train/javascript
-
-const MORSE_CODE = {
+const MORSE_LIST = {
   ".-": "A",
   "-...": "B",
   "-.-.": "C",
@@ -36,5 +35,19 @@ const MORSE_CODE = {
   "-....": "6",
   "--...": "7",
   "---..": "8",
-  "----.": "9"
+  "----.": "9",
+  "...---...": "SOS",
+  "_": " ",
+  "-.-.--": "!",
+  ".-.-.-": "."
+
 };
+
+function decodeMorse(morseCode: string): string {
+  return morseCode
+    .trim()
+    .replace(/   /g, ' _ ')
+    .split(' ')
+    .map(morse => MORSE_LIST[morse])
+    .join('')
+}
