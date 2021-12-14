@@ -7,6 +7,7 @@ function slicer(arr:number[], min:number, max:number) {
     return a + b;
   }, 0);
 }
+
 function iterate(arr:number[]) {
   var res = [];
   for (let min = 0; min < arr.length; min++) {
